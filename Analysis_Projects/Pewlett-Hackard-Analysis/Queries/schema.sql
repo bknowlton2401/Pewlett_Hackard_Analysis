@@ -44,8 +44,9 @@ CREATE TABLE dept_emp (
 	dept_no VARCHAR(4) NOT NULL,
 	from_date DATE not null,
 	to_date DATE not null,
-	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
-    PRIMARY KEY (emp_no)
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
+    PRIMARY KEY (emp_no, dept_no, from_date, to_date)
 );
 
 --create a table for titles
@@ -59,3 +60,38 @@ CREATE TABLE titles(
 );
 --run a query
 select * from departments;
+
+select * from dept_manager;
+
+select * from employees;
+
+select * from dept_emp;
+
+select * from salaries;
+
+select * from titles;
+
+DROP TABLE dept_emp
+
+--create table for dept_emp
+CREATE TABLE dept_emp (
+	emp_no INT NOT NULL,
+	dept_no VARCHAR(4) NOT NULL,
+	from_date DATE not null,
+	to_date DATE not null,
+FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+FOREIGN KEY (dept_no) REFERENCES departments (dept_no),
+    PRIMARY KEY (emp_no, dept_no, from_date, to_date)
+);
+
+DROP TABLE titles
+
+--create a table for titles
+CREATE TABLE titles(
+	emp_no int not null,
+	title varchar (40) not null,
+	from_date date not null,
+	to_date date not null,
+  	FOREIGN KEY (emp_no) REFERENCES employees (emp_no),
+ 	PRIMARY KEY (emp_no, title, from_date, to_date)
+);
